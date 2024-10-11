@@ -1,6 +1,6 @@
 ## Stopwatch Application
 Do you need to track the time you spend on your PC or write some code? I created this project to track wasted time. 
-The timer operates using localStorage, allowing you to close the browser and reopen the stopwatch the next day without losing any progress.
+<br/>The timer operates using localStorage, allowing you to close the browser and reopen the stopwatch the next day without losing any progress.
 List of recorded timers and comment user can edit in localStorage.
 Feel free to copy it to your local machine.
 
