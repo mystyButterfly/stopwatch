@@ -2,21 +2,24 @@ let timer;
 let isRunning = false;
 let elapsedTime = 0; // elapsed time in seconds
 
+function displayRunImg(state){
+  document.getElementById("display").innerText = state ? "Run" : "Stopped";
+  document.getElementById("run-time").innerHTML = state ? `<img src='./run-clock.gif'/>` : "";
+}
+
 // Load saved time from localStorage
 if (localStorage.getItem("elapsedTime")) {
   elapsedTime = parseInt(localStorage.getItem("elapsedTime"));
 }
 if (localStorage.getItem("active")) {
   const state = JSON.parse(localStorage.getItem("active"));
-  document.getElementById("display").innerText = state ? "Run" : "Stopped";
+  displayRunImg(state)
 }
 
 document.getElementById("startBtn").onclick = function () {
   if (!isRunning) {
     isRunning = true;
-    document.getElementById("display").innerText = `${
-      isRunning ? "Run" : "Stopped"
-    }`;
+    displayRunImg(isRunning)
     const currentTime = JSON.parse(localStorage.getItem("currentTime")) || 0;
     const startTime = Date.now() - parseInt(currentTime);
     localStorage.setItem("currentTime", "0");
@@ -29,9 +32,7 @@ document.getElementById("startBtn").onclick = function () {
 document.getElementById("pauseBtn").onclick = function () {
   if (JSON.parse(localStorage.getItem("active"))) {
     isRunning = false;
-    document.getElementById("display").innerText = `${
-      isRunning ? "Run" : "Stopped"
-    }`;
+    displayRunImg(isRunning)
     let currentTime =
       Date.now() - JSON.parse(localStorage.getItem("startTime"));
     localStorage.setItem("currentTime", currentTime);
@@ -48,9 +49,7 @@ document.getElementById("stopBtn").onclick = function () {
   // If the user confirms, clear localStorage and reload the page
   if (userConfirmed) {
     isRunning = false;
-    document.getElementById("display").innerText = `${
-      isRunning ? "Run" : "Stopped"
-    }`;
+    displayRunImg(isRunning)
 
     localStorage.setItem("currentTime", "0");
     localStorage.setItem("startTime", "0");
@@ -157,6 +156,19 @@ function templateTime() {
     document.getElementById("temp").innerText = millisecondsToTime(tempTime);
   }
 }
+
+// save comment to local storage and write this in first time on page
+function saveComment(){
+  const comment = document.getElementById("comment").value;
+  localStorage.setItem("comment", comment);
+}
+document.addEventListener("DOMContentLoaded", function() {
+  const savedComment = localStorage.getItem("comment");
+  if (savedComment) {
+    document.getElementById("comment").value = savedComment;
+  }
+});
+
 templateTime();
 
 generateList();
