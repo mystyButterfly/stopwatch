@@ -11,7 +11,7 @@
 
 <body>
   <div class="stopwatch">
-    <h1 id="display">Click start</h1>
+    <h1 id="display">Click start</h1><span id="run-time"></span>
     <h2 id="timer">time</h2>
     <div>Approximate time: <span id="temp"></span></div>
     <button id="startBtn">Start</button>
@@ -21,7 +21,7 @@
     <br>
     <button id="clearLS">Clear Local Storage</button>
     <br>
-    <input type="text" placeholder="comment" id="comment">
+    <input type="text" placeholder="comment" id="comment" oninput="saveComment()">
 
   </div>
   
