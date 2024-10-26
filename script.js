@@ -5,6 +5,8 @@ let elapsedTime = 0; // elapsed time in seconds
 function displayRunImg(state){
   document.getElementById("display").innerText = state ? "Run" : "Stopped";
   document.getElementById("run-time").innerHTML = state ? `<img src='./run-clock.gif'/>` : "";
+  document.title = state ? 'Stopwatch - RUN' : 'Stopwatch - STOPPED';
+  document.getElementById('favicon').href = state ? "./clock-red.png" : "./clock.png";
 }
 
 // Load saved time from localStorage
